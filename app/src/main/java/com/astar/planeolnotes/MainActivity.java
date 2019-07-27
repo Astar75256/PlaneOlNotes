@@ -1,19 +1,46 @@
 package com.astar.planeolnotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.astar.planeolnotes.model.NoteEntity;
+import com.astar.planeolnotes.ui.EditorActivity;
+import com.astar.planeolnotes.ui.NotesAdapter;
+import com.astar.planeolnotes.utilities.SampleData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
+    @OnClick(R.id.fab)
+    void onClickHandler() {
+        Intent intent = new Intent(this, EditorActivity.class);
+        startActivity(intent);
+    }
+
+    private List<NoteEntity> notesData = new ArrayList<>();
+    private NotesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +49,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ButterKnife.bind(this);
+
+        initRecyclerView();
+
+
+
+        notesData.addAll(SampleData.getNotes());
+        for (NoteEntity note: notesData) {
+            Log.i("PlainOlNotes", note.toString());
+        }
+    }
+
+    private void initRecyclerView() {
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new NotesAdapter(notesData, this);
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
