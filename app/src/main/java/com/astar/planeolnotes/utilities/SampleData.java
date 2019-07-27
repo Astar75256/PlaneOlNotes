@@ -1,6 +1,6 @@
 package com.astar.planeolnotes.utilities;
 
-import com.astar.planeolnotes.model.NoteEntity;
+import com.astar.planeolnotes.database.NoteEntity;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.astar.planeolnotes.R;
-import com.astar.planeolnotes.model.NoteEntity;
+import com.astar.planeolnotes.database.NoteEntity;
 
 import java.util.List;
 

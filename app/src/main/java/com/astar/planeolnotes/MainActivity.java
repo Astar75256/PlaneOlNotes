@@ -3,21 +3,17 @@ package com.astar.planeolnotes;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.astar.planeolnotes.model.NoteEntity;
+import com.astar.planeolnotes.database.NoteEntity;
 import com.astar.planeolnotes.ui.EditorActivity;
 import com.astar.planeolnotes.ui.NotesAdapter;
 import com.astar.planeolnotes.utilities.SampleData;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
